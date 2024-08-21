@@ -12,15 +12,22 @@ When(/^I search for a phone$/, () => {
   cy.searchPhone();
 });
 
-When(/^I click the Search button$/, () => {
-  cy.searchButton();
-});
+Then(/^I am redirected to the (.*) page$/, (pageName) => {
+  const urlMatchers = {
+    "phone selection":
+      /^https:\/\/ecommerce-playground\.lambdatest\.io\/.*phone$/,
+    checkout: /^https:\/\/ecommerce-playground\.lambdatest\.io\/.*checkout$/,
+    confirmation: /^https:\/\/ecommerce-playground\.lambdatest\.io\/.*confirm$/,
+    "Order successful":
+      /^https:\/\/ecommerce-playground\.lambdatest\.io\/.*success$/,
+  };
 
-Then(/^I am navigated to the phone selection page$/, () => {
-  cy.url().should(
-    "match",
-    /^https:\/\/ecommerce-playground\.lambdatest\.io\/.*phone$/
-  );
+  const expectedUrlPattern = urlMatchers[pageName];
+  if (expectedUrlPattern) {
+    cy.url().should("match", expectedUrlPattern);
+  } else {
+    throw new Error(`No matching URL pattern found for page: ${pageName}`);
+  }
 });
 
 When(/^I hover and click the the cart icon$/, () => {
@@ -31,20 +38,12 @@ When(/^I click checkout on pop-up$/, () => {
   cy.clickCheckoutButton();
 });
 
-
-Then(/^I am redirected to checkout page$/, () => {
-  cy.url().should(
-    "match",
-    /^https:\/\/ecommerce-playground\.lambdatest\.io\/.*checkout$/
-  );
-});
-
 When(/^I fill in the "([^"]*)"$/, (inputDetails) => {
   cy.insertDetails(inputDetails);
 });
 
 When(/^I select the "([^"]*)"$/, (fieldName) => {
-  // Trigger the custom command with the field name
+  
   cy.selectDropdownOption(fieldName);
 });
 
@@ -62,20 +61,4 @@ When(/^I enable the privacy checkbox$/, () => {
 
 When(/^I click on the "([^"]*)" button$/, (buttonText) => {
   cy.clickElement(buttonText);
-});
-
-
-Then(/^I am redirected to confirmation page$/, () => {
-   cy.url().should(
-     "match",
-     /^https:\/\/ecommerce-playground\.lambdatest\.io\/.*confirm$/
-   );
-});
-
-
-Then(/^I am redirected to Order successful page$/, () => {
-   cy.url().should(
-     "match",
-     /^https:\/\/ecommerce-playground\.lambdatest\.io\/.*success$/
-   );
 });
