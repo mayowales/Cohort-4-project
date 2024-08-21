@@ -1,15 +1,15 @@
 
 Feature: Testing an ecommerce site
 
-    Scenario Outline: Verify that a user can order using <source> as source of info
+    Scenario Outline: Verify that a user can order using device
         Given I am on the home page
         When I select phone option
         And I search for a phone
-        And I click the Search button
-        Then I am navigated to the phone selection page
+        And I click on the "Search" button
+        Then I am redirected to the phone selection page
         When I hover and click the the cart icon
         And I click checkout on pop-up
-        Then I am redirected to checkout page
+        Then I am redirected to the checkout page
         When I fill in the "Firstname"
         And I fill in the "Lastname"
         And I fill in the "email"
@@ -26,6 +26,6 @@ Feature: Testing an ecommerce site
         And I enable the terms checkbox
         And I enable the privacy checkbox
         And I click on the "Continue" button
-        Then I am redirected to confirmation page
+        Then I am redirected to the confirmation page
         When I click on the "Confirm Order " button
-        Then I am redirected to Order successful page
+        Then I am redirected to the Order successful page

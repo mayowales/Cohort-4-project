@@ -19,7 +19,7 @@
     //
     // -- This will overwrite an existing command --
     // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-    import { faker, fakerDE } from "@faker-js/faker";
+    import { faker} from "@faker-js/faker";
     let data
 
     before(() => {
@@ -38,9 +38,6 @@
 
     })
 
-     Cypress.Commands.add("searchButton", () => {
-       cy.get(data.searchButton).should("be.visible").click();
-     });
 
      Cypress.Commands.add("addProductToCart", () => {
         cy.get(data.hoverPhone)
@@ -68,10 +65,7 @@
       cy.get(field).should("exist").fill(text);
     });
 
-    //  Cypress.Commands.add("clickAnElememt", (element) => {
-    //    cy.get(element).should("be.visible").click();
-    //  });
-
+   
     Cypress.Commands.add("insertDetails", (field) => {
       switch (field) {
         case "Firstname":
@@ -140,10 +134,6 @@
     });
 
     Cypress.Commands.add("clickElement", (elementName) => {
-      //  const elements = {
-      // //    continueBtn: data.continueButton,
-      // //  };
-
-      // //  const selector = elements[elementName];
+      
         cy.get("button").contains(elementName).should("be.visible").click();
     });
