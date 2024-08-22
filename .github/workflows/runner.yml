@@ -12,3 +12,9 @@ jobs:
 
       - name: Run Cypress Scripts
         uses: cypress-io/github-action@v6
+
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: cucumber-report
+          path: /cypress/reports/html/e2e-repot.html
