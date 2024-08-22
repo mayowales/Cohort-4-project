@@ -3,6 +3,6 @@
     
       report.generate({
           jsonDir: "./cypress/reports/json/",
-          reportPath: "./cypress/reports/html/e2e-repot.html",
+          reportPath: "./cypress/reports/html/",
       });
         

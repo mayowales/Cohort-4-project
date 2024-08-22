@@ -17,4 +17,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: cucumber-report
-          path: cypress/reports/html/e2e-repot.html
+          path: /cypress/reports/html/e2e-repot.html
