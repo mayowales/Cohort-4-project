@@ -18,3 +18,12 @@ jobs:
         with:
           name: cucumber-report
           path: /cypress/reports/html/e2e-repot.html
+
+      - name: Upload to Browserstack
+        uses: "browserstack/github-actions/setup-env@master"
+        with:
+          username: ${{ secrets.BROWSERSTACK_USERNAME }}
+          access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+
+      - run: npm install
+      - run: npx browserstack-cypress run
